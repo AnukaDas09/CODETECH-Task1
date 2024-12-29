@@ -1,0 +1,133 @@
+/* MAIN.PY */
+
+import tkinter as tk
+from tkinter import messagebox
+
+# Functions for the operations
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        return "Error: Division by zero is not allowed."
+    return a / b
+
+# Function to handle button clicks
+def calculate():
+    try:
+        num1 = float(entry1.get())
+        num2 = float(entry2.get())
+        operation = operation_var.get()
+        
+        if operation == "Addition":
+            result = add(num1, num2)
+        elif operation == "Subtraction":
+            result = subtract(num1, num2)
+        elif operation == "Multiplication":
+            result = multiply(num1, num2)
+        elif operation == "Division":
+            result = divide(num1, num2)
+        else:
+            result = "Invalid Operation"
+
+        # Update result label
+        result_label.config(text=f"Result: {result}", fg="green")
+    except ValueError:
+        messagebox.showerror("Input Error", "Please enter valid numbers!")
+        result_label.config(text="Result: Error", fg="red")
+
+# Function to reset all inputs
+def reset():
+    entry1.delete(0, tk.END)
+    entry2.delete(0, tk.END)
+    operation_var.set("Addition")
+    result_label.config(text="Result: ", fg="black")
+
+# Create the main window
+root = tk.Tk()
+root.title("Interactive Calculator")
+
+# Optional: Set a custom window icon (uncomment if you have an icon file)
+# root.iconbitmap('calculator.ico')
+
+# Window dimensions and padding
+root.geometry("400x300")
+root.resizable(False, False)
+root.configure(bg="#f0f0f0")
+
+# Input fields
+tk.Label(root, text="Enter the first number:", bg="#f0f0f0").grid(row=0, column=0, padx=10, pady=10, sticky="w")
+entry1 = tk.Entry(root, width=20)
+entry1.grid(row=0, column=1, padx=10, pady=10)
+
+tk.Label(root, text="Enter the second number:", bg="#f0f0f0").grid(row=1, column=0, padx=10, pady=10, sticky="w")
+entry2 = tk.Entry(root, width=20)
+entry2.grid(row=1, column=1, padx=10, pady=10)
+
+# Dropdown menu for operations
+operation_var = tk.StringVar(value="Addition")
+tk.Label(root, text="Select Operation:", bg="#f0f0f0").grid(row=2, column=0, padx=10, pady=10, sticky="w")
+operations_menu = tk.OptionMenu(root, operation_var, "Addition", "Subtraction", "Multiplication", "Division")
+operations_menu.grid(row=2, column=1, padx=10, pady=10)
+
+# Calculate and Reset buttons
+button_frame = tk.Frame(root, bg="#f0f0f0")
+button_frame.grid(row=3, column=0, columnspan=2, pady=20)
+
+calculate_button = tk.Button(button_frame, text="Calculate", command=calculate, bg="#4CAF50", fg="white", width=10)
+calculate_button.grid(row=0, column=0, padx=5)
+
+reset_button = tk.Button(button_frame, text="Reset", command=reset, bg="#f44336", fg="white", width=10)
+reset_button.grid(row=0, column=1, padx=5)
+
+# Result label
+result_label = tk.Label(root, text="Result: ", font=("Arial", 14), bg="#f0f0f0", fg="black")
+result_label.grid(row=4, column=0, columnspan=2, pady=10)
+
+# Run the GUI event loop
+root.mainloop()
+
+
+/* MENU.PY */
+
+def display_menu():
+    print("\nChoose an operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+
+/* OPERATION.PY */
+
+# operations.py
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+def multiply(a, b):
+    return a * b
+
+def divide(a, b):
+    if b == 0:
+        return "Error: Division by zero is not allowed."
+    return a / b
+
+/* UTILS.PY */
+
+# utils.py
+
+def get_number(prompt):
+    while True:
+        try:
+            return float(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
