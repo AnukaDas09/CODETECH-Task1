@@ -6,6 +6,7 @@
 **Mentor** Sravani Gouni
 
 ## Overview of the Project
+![WhatsApp Image 2024-12-30 at 21 19 40_1976bec6](https://github.com/user-attachments/assets/57bf1e71-f0bb-47f9-9fd2-4e155e919c12)
 
 ## Project: Simple Calculator with Interactive GUI
 
